@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grade Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .top-bar input, .top-bar select, .top-bar button {
+      padding: 5px;
+      margin-right: 5px;
+      font-size: 14px;
+    }
+
+    .top-bar .actions button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      margin-left: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .top-bar .actions button:nth-child(1) {
+      background-color: #3B82F6; /* Refresh */
+    }
+
+    .top-bar .actions button:nth-child(2) {
+      background-color: #2563EB; /* PDF */
+    }
+
+    .table-container {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px 10px;
+      text-align: left;
+    }
+
+    thead tr {
+      background-color: #0078D4;
+      color: white;
+    }
+
+    tfoot td {
+      font-weight: bold;
+    }
+
+    .curr {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div>
+      <input type="text" placeholder="Period 24-1">
+      <button title="Help">?</button>
+      <select>
+        <option selected disabled>Level</option>
+        <option>Nursery</option>
+        <option>Pre-Kinder</option>
+        <option>Kindergarten</option>
+        <option>Grade school</option>
+        <option>Junior High</option>
+        <option>College</option>
+        <option>Post-Baccalaurreate</option>
+        <option>Masteral</option>
+        <option>Doctoral</option>
+        <option>Law</option>
+        <option>TechVoc</option>
+        <option>Short Term</option>
+        <option>Special</option>
+        <option>Non-Academic</option>
+      </select>
+    </div>
+    <div class="actions">
+      <button>Refresh</button>
+      <button>PDF</button>
+      <button>ROG</button>
+      <button>SGR</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th colspan="7">First Semester AY 2024-2025</th></tr>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Instructor</th>
+        <th>Final Grade</th>
+        <th>Equiv Grade</th>
+        <th>Units</th>
+        <th>Remark</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GE6</td><td>Art Appreciation</td><td>KC. Fullero</td><td>1.70</td><td>3.0</td><td>3.0</td><td>Passed</td></tr>
+      <tr><td>GEE3-C</td><td>Living in the IT Era</td><td>A. CAYAO</td><td>1.50</td><td>3.0</td><td>3.0</td><td>Passed</td></tr>
+      <tr><td>PATHFIT3</td><td>Dance</td><td>SM. Belleca</td><td>1.70</td><td>2.0</td><td>2.0</td><td>Passed</td></tr>
+      <tr><td>CC4</td><td>Data Structures and Algorithms</td><td>K. Cuya</td><td>1.25</td><td>3.0</td><td>3.0</td><td>Passed</td></tr>
+      <tr><td>PF1</td><td>Object-Oriented Programming</td><td>D. Peñas</td><td>2.40</td><td>3.0</td><td>3.0</td><td>Passed</td></tr>
+      <tr><td>PT1</td><td>Platform Technologies</td><td>F. Peñalosa</td><td>1.40</td><td>3.0</td><td>3.0</td><td>Passed</td></tr>
+      <tr><td>IPT1</td><td>Integrative Programming and Technology</td><td>R. Artiaga</td><td>2.00</td><td>3.0</td><td>3.0</td><td>Passed</td></tr>
+      <tr><td>ITP1</td><td>Open Source</td><td>F. Oliver</td><td>1.70</td><td>3.0</td><td>3.0</td><td>Passed</td></tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7">Total: <strong>8</strong> Passed: <strong>8</strong> Failed: <strong>0</strong> WAvg: <strong>1.7065</strong></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="curr">Curr: <strong>BSIT2023</strong></div>
+
+</body>
+</html>

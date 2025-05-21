@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSU Portal - Goa/San Jose</title>
+    <style>
+        
+        :root {
+            --primary-blue:#06345c;
+            --accent-yellow: #FFD100;
+            --hover-blue: #003B7D;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0 auto;
+            background: #f8f9fa;
+            
+        }
+
+        .header {
+          background: var(--primary-blue);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0rem auto;
+            margin-bottom: 0px; 
+             padding-top: 2;
+        }
+
+        .role-title {
+            color: #00274e;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .role-description {
+            color: #204266;
+            font-size: 1.1rem;
+            margin-left: 1rem;
+            padding-left: 1rem;
+        }
+        .role-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            background: var(--accent-yellow);
+        }
+
+        .admission-section {
+             position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            background:#06345c;
+            color: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            background: whitesmoke;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            color: rgb(0, 2, 78);
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+             background: var(--accent-yellow);
+        }
+
+        
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-form {
+            width: 350px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+         input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #0054A6;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+         .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-login {
+            background: #0054A6;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: whitesmoke;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+
+        .error {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+         @media (max-width: 768px) {
+             .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem;
+            }
+            .university-title {
+                font-size: 2rem;
+            }
+            .campuses {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+        }
+
+         .logo-container {
+            width: 140px;
+            height: 140px;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        
+        .university-title {
+            color: white;
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .campuses {
+            color: whitesmoke;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .announcement-board {
+            order: 1;
+            grid-column: 1 / -1;
+            padding: 10px;
+            background: #e3f2fd;
+            border-radius: 10px;
+            border: 2px solid #0054A6;
+            margin-bottom: 5px;
+             margin: 2rem auto;
+              max-width: 1000px;
+        }
+
+        .announcement-title {
+            color: #0054A6;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .announcement-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-left: 4px solid #FFD100;
+            border-radius: 4px;
+        }
+
+        .announcement-date {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .announcement-content {
+            color: #0054A6;
+        }
+
+    </style>
+</head>
+<body>
+       <header class="header">
+        <div class="logo-container">
+            <img src="PSU.png" alt="PSU Logo">
+        </div>
+        <div class="header-text">
+            <h1 class="university-title">PARTIDO STATE UNIVERSITY</h1>
+            <div class="campuses">
+                <span>GOA</span>
+                <span>•</span>
+                <span>Camarines Sur</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="grid-container">
+        <div class="role-card" onclick="showLogin('Administrator')">
+            <h2 class="role-title">Administrator</h2>
+            <p class="role-description">University Management Portal</p>
+        </div>
+        <div class="role-card" onclick="showLogin('Instructor')">
+            <h2 class="role-title">Instructor</h2>
+            <p class="role-description">Faculty Access Portal</p>
+        </div>
+        <div class="role-card" onclick="showLogin('Student')">
+            <h2 class="role-title">Student</h2>
+            <p class="role-description">Learning Management System</p>
+        </div>
+        <div class="role-card" onclick="showLogin('Parent')">
+            <h2 class="role-title">Parent</h2>
+            <p class="role-description">Student Progress Portal</p>
+        </div>
+    </div>
+
+     <div class="announcement-board">
+        <h2 class="announcement-title">Announcements</h2>
+        
+        <div class="announcement-item">
+            <div class="announcement-date">March 15, 2024</div>
+            <div class="announcement-content">
+                <strong>Enrollment Schedule:</strong> Please check the updated enrollment dates for 2nd semester.
+            </div>
+        </div>
+
+        <div class="announcement-item">
+            <div class="announcement-date">March 14, 2024</div>
+            <div class="announcement-content">
+                <strong>Faculty Meeting:</strong> All instructors are required to attend the monthly meeting on March 20.
+            </div>
+        </div>
+
+        <div class="announcement-item">
+            <div class="announcement-date">March 13, 2024</div>
+            <div class="announcement-content">
+                <strong>System Maintenance:</strong> Portal will be unavailable on March 18, 12AM-3AM.
+            </div>
+
+    <div class="admission-section">
+        <button class="btn" onclick="showAdmissionForm()">Apply for Admission</button>
+    </div>
+
+    <div class="error-message" id="usernameError"></div>
+         <div class="error-message" id="passwordError"></div>
+
+    <div id="loginModal" class="modal-overlay">
+        <div class="login-form">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Login</h2>
+            <form onsubmit="event.preventDefault(); validateLogin"()>
+                <div style="margin: 1rem 0;">
+                    <label>User ID:</label>
+                    <input type="text" style="width: 100%; padding: 0.5rem; margin-top: 0.5rem;" id="username" required>
+                </div>
+                <div style="margin: 1rem 0;">
+                    <label>Password:</label>
+                    <input type="password" style="width: 100%; padding: 0.5rem; margin-top: 0.5rem;" id="password" required>
+                </div>
+                <button type="submit"  class="login-btn" onclick="validateLogin()" style="background: var(--primary-blue); color: white; padding: 0.8rem 2rem; border: none; border-radius: 5px; cursor: pointer;">Login</button>
+                                <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+       function validateLogin() {
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    
+    // Tanggalin ang error message references kung wala talaga
+    let isValid = true;
+
+    // Reset styles
+    username.style.borderColor = '#ddd';
+    password.style.borderColor = '#ddd';
+
+    // Validation
+    if(username.value.trim() === '') {
+        username.style.borderColor = 'red';
+        isValid = false;
+    }
+
+    if(password.value.trim() === '') {
+        password.style.borderColor = 'red';
+        isValid = false;
+    }
+
+    // Redirect kung valid
+    if(isValid) {
+        window.location.href = 'dashboard.html';
+    }
+}
+
+        function clearForm() {
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        function showLogin(role) {
+            document.getElementById('modalTitle').textContent = `${role} Login`;
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('loginModal').style.display = 'none';
+            clearForm();
+        }
+
+        function showAdmissionForm() {
+            window.location.href = "enrollment.html";
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('loginModal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

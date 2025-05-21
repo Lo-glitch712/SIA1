@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Absences</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+    }
+
+    .title-section {
+      padding: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 20px;
+      align-items: center;
+    }
+
+    .controls input[type="text"] {
+      padding: 8px;
+      font-size: 14px;
+      width: 100px;
+    }
+
+    .controls button {
+      padding: 8px 15px;
+      background-color: #2c2d7b;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .controls button:hover {
+      background-color: #4f73db;
+      transform: scale(1.05);
+    }
+
+    .table-header {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      font-weight: bold;
+      padding: 10px 20px;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      background-color: #fafafa;
+    }
+
+    /* Modal styles. For pop up window "?" */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background-color: white;
+      width: 95%;
+      max-width: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      background-color: #2c2d7b;
+      color: white;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 15px;
+    }
+
+    .modal-body input[type="text"] {
+      width: calc(100% - 2px); 
+      padding: 8px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .modal-body .button-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .modal-body .button-group button {
+      flex: 1;
+      padding: 8px;
+      background-color: #2c2d7b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .modal-body .button-group button:hover {
+      background-color: #4f73db;
+    }
+
+    .modal-body .no-button-msg {
+      margin: 10px 0;
+      font-style: italic;
+      color: #555;
+    }
+
+    .modal-body .table-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      font-weight: bold;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .controls input,
+      .controls button {
+        width: 100%;
+      }
+
+      .modal-content {
+        max-width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Title -->
+  <div class="title-section">Class Absences</div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <label>
+      Period
+      <input type="text" value="24-2">
+    </label>
+    <button id="helpBtn">?</button>
+    <button>Refresh</button>
+    <button>PDF</button>
+  </div>
+
+  <!-- Table Header -->
+  <div class="table-header">
+    <div>Instructor</div>
+    <div>Subject</div>
+    <div>Date</div>
+    <div>Type</div>
+  </div>
+
+  <!-- Modal, For pop up window "?"-->
+  <div class="modal" id="popupModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        Search Period
+        <button class="close-btn" id="closeBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" placeholder="Search">
+        <div class="button-group">
+          <button>Code</button>
+          <button>Name</button>
+        </div>
+        <div class="table-header">
+          <div>Code</div>
+          <div>Name</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const helpBtn = document.getElementById('helpBtn');
+    const modal = document.getElementById('popupModal');
+    const closeBtn = document.getElementById('closeBtn');
+
+    helpBtn.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>

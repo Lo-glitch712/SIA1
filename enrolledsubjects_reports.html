@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SIAS Online</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .content {
+      padding: 20px;
+      position: relative;
+    }
+
+    .button-group {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .button-group button {
+      background-color: #393f92;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      margin-left: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .button-group button:hover {
+      background-color: #2e327a;
+    }
+
+    .student-info {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .enrollment-status {
+      color: blue;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #e0e0e0;
+    }
+
+    .total {
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <button onclick="location.reload()">Refresh</button>
+      <button>PDF</button>
+      <button>COE</button>
+    </div>
+
+    <!-- Student Info -->
+    <div class="student-info">
+      <p>Student: 202311242 | Texon, Marianne L.</p>
+      <p>Period: 24-2 | Second Semester AY 2024</p>
+      <p class="enrollment-status">Student is OFFICIALLY Enrolled.</p>
+    </div>
+
+    <!-- Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Subject Code</th>
+          <th>Subject Description</th>
+          <th>Units</th>
+          <th>Schedule</th>
+          <th>Room</th>
+          <th>Instructor</th>
+          <th>Section</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>C006</td><td>GE7</td><td>Science, Technology and...</td><td>3.0</td><td>10:30 am-12:30 pm Th</td><td>IITRM21</td><td>MC. Lipo</td><td>BSIT 2B</td></tr>
+        <tr><td>C002</td><td>MS2</td><td>Quantitative Methods</td><td>3.0</td><td>4–5 pm T</td><td>IITRM14</td><td>H. Pesino</td><td>BSIT 2B</td></tr>
+        <tr><td>C001</td><td>CC5</td><td>Information Management</td><td>3.0</td><td>1–4 pm T</td><td>IITRM4</td><td>P. Peñalosa</td><td>BSIT 2B</td></tr>
+        <tr><td>C001</td><td>CC5</td><td>Information Management</td><td>3.0</td><td>7:30–9:30 am W</td><td>IITRM13</td><td>P. Peñalosa</td><td>BSIT 2B</td></tr>
+        <tr><td>C005</td><td>SIA1</td><td>Systems Integration and...</td><td>3.0</td><td>2–5 pm Th</td><td>IITRM15</td><td>Sa. Briones</td><td>BSIT 2B</td></tr>
+        <tr><td>C005</td><td>SIA1</td><td>Systems Integration and...</td><td>3.0</td><td>1–3 pm W</td><td>IITRM15</td><td>Sa. Briones</td><td>BSIT 2B</td></tr>
+        <tr><td>C003</td><td>NET1</td><td>Networking 1</td><td>3.0</td><td>7:30–10:30 am T</td><td>IITRM06</td><td>A. Abio</td><td>BSIT 2B</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</body>
+</html>

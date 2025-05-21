@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Enrollment Application</title>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    /* (Same CSS as before — no changes needed) */
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    }
+
+     main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #06345c;
+      padding: 1.5rem 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      max-width: 1200px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      margin: 0;
+      line-height: 1.2;
+      text-align: left;
+      flex-grow: 1;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section {
+      background-color: #fff;
+      border-left: 5px solid #FFD100;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+    section h2 {
+      color: #06345c;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    form div {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+    }
+
+    .cancel-btn{
+      text-decoration: none !important; 
+      display: block;
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #d1e1ff; /* Pale color initially */
+      color: #06345c;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.3s ease;
+      display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 2.5; /* Adjust depende sa button height */
+    }
+
+   .cancel-btn.active {
+      background-color: #06345c; /* Saturated color when checked */
+      color: #fff;
+    }
+    #submit-button {
+      display: block;
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #d1e1ff; /* Pale color initially */
+      color: #06345c;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    #submit-button.active {
+      background-color: #06345c; /* Saturated color when checked */
+      color: #fff;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #06345c;
+      color: #fff;
+      margin-top: 2rem;
+    }
+
+    .button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center; /* Dagdag para sa pantay na spacing */
+}
+
+    .logo-container {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+     @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      
+      header h1 {
+        text-align: center;
+        font-size: 1.8rem;
+      }
+      
+      .logo-container {
+        width: 70px;
+        height: 70px;
+      }
+    }
+
+     @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+        
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+            <img src="PSU.png" alt="PSU Logo">
+        </div>
+    <h1>Online Enrollment Application</h1>
+  </header>
+  <main>
+    <form id="enrollment-form">
+      <!-- Personal Data -->
+      <section>
+        <h2>Personal Data</h2>
+        <div><label for="last-name">Last Name:</label><input type="text" id="last-name" name="last-name" placeholder="e.g. Dela Cruz" required /></div>
+        <div><label for="first-name">First Name:</label><input type="text" id="first-name" name="first-name" placeholder="e.g. Juan" required /></div>
+        <div><label for="middle-name">Middle Name:</label><input type="text" id="middle-name" name="middle-name" placeholder="e.g. Santos" /></div>
+        <div><label for="gender">Gender:</label>
+          <select id="gender" name="gender" required>
+            <option value="">Select a gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div><label for="date-of-birth">Date of Birth:</label><input type="date" id="date-of-birth" name="date-of-birth" required /></div>
+        <div><label for="place-of-birth">Place of Birth:</label><input type="text" id="place-of-birth" name="place-of-birth" placeholder="e.g. Camarines Sur" required /></div>
+        <div><label for="civil-status">Civil Status:</label>
+          <select id="civil-status" name="civil-status" required>
+            <option value="">Select a civil status</option>
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+            <option value="separated">Separated</option>
+            <option value="divorced">Divorced</option>
+            <option value="widowed">Widowed</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Home Address & Contact Information -->
+      <section>
+        <h2>Home Address & Contact Information</h2>
+        <div><label for="street-barangay">Street, Barangay:</label><input type="text" id="street-barangay" name="street-barangay" required /></div>
+        <div><label for="municipality">Municipality:</label><input type="text" id="municipality" name="municipality" required /></div>
+        <div><label for="tel-no">Tel. No.:</label><input type="tel" id="tel-no" name="tel-no" /></div>
+        <div><label for="cellphone-no">Cellphone No.:</label><input type="tel" id="cellphone-no" name="cellphone-no" required /></div>
+        <div><label for="email-address">Email Address:</label><input type="email" id="email-address" name="email-address" placeholder="e.g. name@email.com" required /></div>
+        <div><label for="cultural-minority">Member of Cultural Minority:</label><input type="text" id="cultural-minority" name="cultural-minority" /></div>
+        <div><label for="citizenship">Citizenship:</label><input type="text" id="citizenship" name="citizenship" required /></div>
+        <div><label for="dual-citizenship">Dual Citizenship:</label><input type="text" id="dual-citizenship" name="dual-citizenship" /></div>
+        <div><label for="foreigner">Are you a foreigner?</label><input type="checkbox" id="foreigner" name="foreigner" /></div>
+      </section>
+
+      <!-- Admission Data -->
+      <section>
+        <h2>Admission Data</h2>
+        <div><label for="school-name">Name of School (Senior High):</label><input type="text" id="school-name" name="school-name" required /></div>
+        <div><label for="school-address">Address of School:</label><input type="text" id="school-address" name="school-address" required /></div>
+        <div><label for="strand">Strand (e.g., GAS):</label><input type="text" id="strand" name="strand" required /></div>
+        <div><label for="year-graduated">Year Graduated:</label><input type="number" id="year-graduated" name="year-graduated" required /></div>
+        <div><label for="gwa">General Weighted Average (G.W.A.):</label><input type="number" id="gwa" name="gwa" required /></div>
+        <div><label for="learners-ref-no">Learner's Ref. No.:</label><input type="text" id="learners-ref-no" name="learners-ref-no" /></div>
+        <div><label for="last-school-attended">Last School Attended (For Transferee):</label><input type="text" id="last-school-attended" name="last-school-attended" /></div>
+        <div><label for="last-year-attended">Last Year Attended (Ex: 2019):</label><input type="number" id="last-year-attended" name="last-year-attended" /></div>
+        <div><label for="last-year-level">Last Year Level (Ex: 1):</label><input type="number" id="last-year-level" name="last-year-level" /></div>
+      </section>
+
+      <!-- Course Selection -->
+      <section>
+        <h2>Course Selection</h2>
+        <div><label for="preferred-course">Preferred Course:</label>
+          <select id="preferred-course" name="preferred-course" required>
+            <option value="">Select a course</option>
+            <option value="bsit">BSIT</option>
+            <option value="bat">BAT</option>
+          </select>
+        </div>
+        <div><label for="second-course">Second Course:</label>
+          <select id="second-course" name="second-course">
+            <option value="">Select a second course</option>
+            <option value="bat">BAT</option>
+            <option value="bsit">BSIT</option>
+          </select>
+        </div>
+        <div><label for="preferred-modality">Preferred Modality:</label>
+          <select id="preferred-modality" name="preferred-modality" required>
+            <option value="">Select modality</option>
+            <option value="online">Online</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="on-campus">On-Campus</option>
+          </select>
+        </div>
+      </section>
+      
+      
+       <section>  
+         <h2>Parent/Guardian Information</h2>  
+         <div><label for="parent-name">Parent/Guardian Name:</label><input type="text" id="parent-name" name="parent-name" /></div>  
+         <div><label for="parent-contact-number">Parent/Guardian Contact Number:</label><input type="tel" id="parent-contact-number" name="parent-contact-number" /></div>  
+      </section>  
+
+
+      <div>
+        <label><input type="checkbox" id="confirmation" name="confirmation" required /> Confirm that all information above is correct and true.</label>
+      </div>
+<div class="button-group">
+        <a href="index.html" class="cancel-btn">Cancel</a>
+        <button type="submit" id="submit-button" class="button-normal">Submit Application</button>
+    </form> 
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Online Enrollment Application - Partido State University</p>
+  </footer>
+
+
+  
+  <script>
+    window.jsPDF = window.jspdf.jsPDF;
+    const confirmationCheckbox = document.getElementById('confirmation');
+    const submitButton = document.getElementById('submit-button');
+ 
+ 
+     function cancel(){
+        window.location.href = 'index.html'
+     }
+
+    confirmationCheckbox.addEventListener('change', () => {
+      submitButton.classList.toggle('active', confirmationCheckbox.checked);
+    });
+
+    document.getElementById("enrollment-form").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      
+      if (!confirmationCheckbox.checked) {
+        alert("Please confirm your information before submitting.");
+        return;
+      }
+
+      try {
+        // Generate PDF
+        const doc = new jsPDF();
+        const formData = new FormData(this);
+        
+        // PDF Header
+        doc.setFontSize(18);
+        doc.text("PARTIDO STATE UNIVERSITY", 15, 20);
+        doc.setFontSize(14);
+        doc.text("Online Enrollment Application Form", 15, 30);
+
+        // PDF Content
+        let yPosition = 40;
+        formData.forEach((value, key) => {
+          if(value) {
+            doc.setFontSize(12);
+            const formattedKey = key.replace(/-/g, ' ').toUpperCase();
+            doc.text(`${formattedKey}: ${value}`, 15, yPosition);
+            yPosition += 10;
+          }
+        });
+
+        // Save and Redirect
+        doc.save('enrollment-form.pdf');
+        alert("Form submitted successfully! PDF is downloading...");
+        window.location.href = 'enrollment.html';
+        
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+        alert('Error submitting form. Please try again.');
+      }
+
+      // Reset form
+      this.reset();
+      submitButton.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
